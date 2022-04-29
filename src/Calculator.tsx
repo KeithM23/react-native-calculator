@@ -383,8 +383,12 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       actionButtonColor,
       borderColor,
       fontSize,
-      actionButtonTextContainerStyle
+      actionButtonTextContainerStyle,
+      actionButtonTopRowTextContainerStyle
     } = this.props
+
+    var topRow = action != ActionEnum.MINUS && action != ActionEnum.PLUS
+    var textContainerStyle = topRow ? actionButtonTopRowTextContainerStyle : actionButtonTextContainerStyle
 
     return (
       <Button
@@ -400,7 +404,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
         ]}
         textStyle={{ color: actionButtonColor, fontSize }}
         text={value}
-        textContainerStyle={actionButtonTextContainerStyle}
+        textContainerStyle={textContainerStyle}
         onPress={() => {
           if (this.calculated) {
             // continue to use this answer

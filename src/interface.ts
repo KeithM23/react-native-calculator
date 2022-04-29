@@ -125,6 +125,11 @@ export interface CalculatorCommonProps {
   actionButtonTextContainerStyle?: StyleProp<ViewStyle>
 
   /**
+   * Text Container style for action button on top row.
+   */
+  actionButtonTopRowTextContainerStyle?: StyleProp<ViewStyle>
+
+  /**
    * Text Container style for numeric button.
    */
   numericButtonTextContainerStyle?: StyleProp<ViewStyle>
