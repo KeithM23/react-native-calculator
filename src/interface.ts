@@ -115,6 +115,11 @@ export interface CalculatorCommonProps {
   noDecimal?: boolean
 
   /**
+   * Hide thousand separator button.
+   */
+  noThousandSeparator?: boolean
+
+  /**
    * How many decimal places to round the value
    */
   roundTo?: number

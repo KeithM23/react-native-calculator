@@ -167,6 +167,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       hideDisplay,
       displayTextAlign,
       noDecimal,
+      noThousandSeparator,
       calcButtonTextContainerStyle
     } = this.props
 
@@ -235,15 +236,14 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             </View>
             {noDecimal ? (
               <View style={Styles.row}>
-                {this.renderNumberButton(btnSize, '0', true)}
-                {this.renderNumberButton(btnSize, '000', false, 2)}
+                {this.renderNumberButton(btnSize, '0', true, noThousandSeparator ? 3 : 1)}
+                {!noThousandSeparator && this.renderNumberButton(btnSize, '000', false, 2)}
               </View>
             ) : (
               <View style={Styles.row}>
-                {this.renderNumberButton(btnSize, '0', true)}
-                {this.renderNumberButton(btnSize, '000')}
-                {!noDecimal &&
-                  this.renderNumberButton(btnSize, decimalSeparator as string)}
+                {this.renderNumberButton(btnSize, '0', true, noThousandSeparator ? 2 : 1)}
+                {!noThousandSeparator && this.renderNumberButton(btnSize, '000')}
+                {this.renderNumberButton(btnSize, decimalSeparator as string)}
               </View>
             )}
           </View>
