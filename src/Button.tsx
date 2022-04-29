@@ -13,17 +13,18 @@ import {
 export interface ButtonProps {
   style?: StyleProp<ViewStyle>
   textStyle?: StyleProp<TextStyle>
+  textContainerStyle?: StyleProp<ViewStyle>
   text?: string
   onPress?: (event: GestureResponderEvent) => void
 }
 
 export class Button extends React.Component<ButtonProps> {
   render() {
-    const { style, text, textStyle, onPress } = this.props
+    const { style, text, textStyle, textContainerStyle, onPress } = this.props
 
     return (
       <TouchableOpacity style={[style]} onPressIn={onPress}>
-        <View style={styles.container}>
+        <View style={[styles.container, textContainerStyle]}>
           <Text style={textStyle}>{text}</Text>
         </View>
       </TouchableOpacity>

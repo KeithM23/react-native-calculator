@@ -166,7 +166,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       hasAcceptButton,
       hideDisplay,
       displayTextAlign,
-      noDecimal
+      noDecimal,
+      calcButtonTextContainerStyle
     } = this.props
 
     const done = this.state.done && hasAcceptButton
@@ -264,6 +265,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             }}
             text={done ? '↲' : '='}
             onPress={this.calculate}
+            textContainerStyle={calcButtonTextContainerStyle}
           />
         </View>
       </View>
@@ -281,7 +283,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       numericButtonBackgroundColor,
       numericButtonColor,
       borderColor,
-      fontSize
+      fontSize,
+      numericButtonTextContainerStyle
     } = this.props
 
     return (
@@ -298,6 +301,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
         ]}
         textStyle={{ color: numericButtonColor, fontSize }}
         text={value}
+        textContainerStyle={numericButtonTextContainerStyle}
         onPress={() => {
           if (this.calculated) {
             // clear answer replace with entered number
@@ -378,7 +382,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       actionButtonBackgroundColor,
       actionButtonColor,
       borderColor,
-      fontSize
+      fontSize,
+      actionButtonTextContainerStyle
     } = this.props
 
     return (
@@ -395,6 +400,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
         ]}
         textStyle={{ color: actionButtonColor, fontSize }}
         text={value}
+        textContainerStyle={actionButtonTextContainerStyle}
         onPress={() => {
           if (this.calculated) {
             // continue to use this answer

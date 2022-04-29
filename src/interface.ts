@@ -113,6 +113,21 @@ export interface CalculatorCommonProps {
    * How many decimal places to round the value
    */
   roundTo?: number
+
+  /**
+   * Text Container style for action button.
+   */
+  actionButtonTextContainerStyle?: StyleProp<ViewStyle>
+
+  /**
+   * Text Container style for numeric button.
+   */
+  numericButtonTextContainerStyle?: StyleProp<ViewStyle>
+
+  /**
+   * Text Container style for calc button.
+   */
+  calcButtonTextContainerStyle?: StyleProp<ViewStyle>
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
@@ -131,5 +146,8 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   borderColor: '#52525B',
   fontSize: 18,
   value: 0,
-  displayTextAlign: 'left'
+  displayTextAlign: 'left',
+  actionButtonTextContainerStyle: {},
+  numericButtonTextContainerStyle: {},
+  calcButtonTextContainerStyle: {}
 }
