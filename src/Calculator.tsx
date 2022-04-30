@@ -168,11 +168,14 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       displayTextAlign,
       noDecimal,
       noThousandSeparator,
-      calcButtonTextContainerStyle
+      calcButtonTextContainerStyle,
+      acceptButtonTextContainerStyle,
+      doneText
     } = this.props
 
     const done = this.state.done && hasAcceptButton
 
+    const textContainerStyle = done ? acceptButtonTextContainerStyle : calcButtonTextContainerStyle
     if (!btnSize) {
       return null
     }
@@ -263,9 +266,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               color: done ? acceptButtonColor : calcButtonColor,
               fontSize: (fontSize as number) * 2
             }}
-            text={done ? '↲' : '='}
+            text={done ? doneText : '='}
             onPress={this.calculate}
-            textContainerStyle={calcButtonTextContainerStyle}
+            textContainerStyle={textContainerStyle}
           />
         </View>
       </View>

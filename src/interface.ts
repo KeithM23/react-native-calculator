@@ -125,6 +125,11 @@ export interface CalculatorCommonProps {
   roundTo?: number
 
   /**
+   * Text for done button
+   */
+  doneText?: string
+
+  /**
    * Text Container style for action button.
    */
   actionButtonTextContainerStyle?: StyleProp<ViewStyle>
@@ -143,6 +148,11 @@ export interface CalculatorCommonProps {
    * Text Container style for calc button.
    */
   calcButtonTextContainerStyle?: StyleProp<ViewStyle>
+
+  /**
+   * Text Container style for accept button.
+   */
+  acceptButtonTextContainerStyle?: StyleProp<ViewStyle>
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
@@ -162,7 +172,9 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   fontSize: 18,
   value: 0,
   displayTextAlign: 'left',
+  doneText: '↲',
   actionButtonTextContainerStyle: {},
   numericButtonTextContainerStyle: {},
-  calcButtonTextContainerStyle: {}
+  calcButtonTextContainerStyle: {},
+  acceptButtonTextContainerStyle: {}
 }
