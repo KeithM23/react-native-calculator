@@ -542,15 +542,18 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       }
     ]
 
+    // setText will update the state triggering a re render
+    // so we want this.calculated to be representative of that
+    // but we also want to know it's previous value 
+    const previouslyCalculatedValue = this.calculated
+    this.calculated = true
     this.setText(true, () => {
-      if (onCalc) {
-        onCalc(value, text)
-      }
-
-      if (hasAcceptButton && onAccept && this.state.done) {
+      if (hasAcceptButton && onAccept && previouslyCalculatedValue) {
         onAccept(value, text)
       }
-      this.calculated = true
+      else if (onCalc) {
+        onCalc(value, text)
+      }
     })
   }
 
