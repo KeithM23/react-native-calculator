@@ -170,10 +170,14 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       noThousandSeparator,
       calcButtonTextContainerStyle,
       acceptButtonTextContainerStyle,
-      doneText
+      doneText,
+      showAcceptOnlyWhenCalculated
     } = this.props
 
-    const done = this.state.done && hasAcceptButton
+    var done = this.state.done && hasAcceptButton
+    if(done && showAcceptOnlyWhenCalculated){
+      done = this.calculated
+    }
 
     const textContainerStyle = done ? acceptButtonTextContainerStyle : calcButtonTextContainerStyle
     if (!btnSize) {

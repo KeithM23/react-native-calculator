@@ -130,6 +130,12 @@ export interface CalculatorCommonProps {
   doneText?: string
 
   /**
+   * Show done only when there has been a calculation
+   * prevents done being shown by default
+   */
+  showAcceptOnlyWhenCalculated?: boolean
+
+  /**
    * Text Container style for action button.
    */
   actionButtonTextContainerStyle?: StyleProp<ViewStyle>
@@ -173,6 +179,7 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   value: 0,
   displayTextAlign: 'left',
   doneText: '↲',
+  showAcceptOnlyWhenCalculated: false,
   actionButtonTextContainerStyle: {},
   numericButtonTextContainerStyle: {},
   calcButtonTextContainerStyle: {},
