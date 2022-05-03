@@ -130,6 +130,16 @@ export interface CalculatorCommonProps {
   doneText?: string
 
   /**
+   * Text for division button
+   */
+  divisionText: string
+
+  /**
+   * Text for multiplication button
+   */
+  multiplicationText: string
+
+  /**
    * Show done only when there has been a calculation
    * prevents done being shown by default
    */
@@ -179,6 +189,8 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   value: 0,
   displayTextAlign: 'left',
   doneText: '↲',
+  divisionText: '/',
+  multiplicationText: '*',
   showAcceptOnlyWhenCalculated: false,
   actionButtonTextContainerStyle: {},
   numericButtonTextContainerStyle: {},

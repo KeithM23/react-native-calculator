@@ -171,7 +171,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       calcButtonTextContainerStyle,
       acceptButtonTextContainerStyle,
       doneText,
-      showAcceptOnlyWhenCalculated
+      showAcceptOnlyWhenCalculated,
+      divisionText,
+      multiplicationText
     } = this.props
 
     var done = this.state.done && hasAcceptButton
@@ -218,8 +220,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
           ]}
         >
           {this.renderActionButton(btnSize, 'C', ActionEnum.CLEAR, true)}
-          {this.renderActionButton(btnSize, '/', ActionEnum.DIVIDE)}
-          {this.renderActionButton(btnSize, '*', ActionEnum.MULTIPLY)}
+          {this.renderActionButton(btnSize, divisionText, ActionEnum.DIVIDE)}
+          {this.renderActionButton(btnSize, multiplicationText, ActionEnum.MULTIPLY)}
           {this.renderActionButton(btnSize, '❮', ActionEnum.BACK)}
         </View>
         <View style={Styles.row}>
@@ -391,7 +393,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       borderColor,
       fontSize,
       actionButtonTextContainerStyle,
-      actionButtonTopRowTextContainerStyle
+      actionButtonTopRowTextContainerStyle,
+      multiplicationText,
+      divisionText
     } = this.props
 
     var topRow = action != ActionEnum.MINUS && action != ActionEnum.PLUS
@@ -433,11 +437,11 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               break
 
             case ActionEnum.MULTIPLY:
-              this.setSign('*')
+              this.setSign(multiplicationText)
               break
 
             case ActionEnum.DIVIDE:
-              this.setSign('/')
+              this.setSign(divisionText)
               break
 
             case ActionEnum.BACK:
@@ -512,7 +516,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   }
 
   calculate() {
-    const { onCalc, onAccept, hasAcceptButton, roundTo = 2 } = this.props
+    const { onCalc, onAccept, hasAcceptButton, roundTo = 2, divisionText, multiplicationText } = this.props
 
     if (!this.stacks.length) {
       this.clear()
@@ -529,7 +533,16 @@ export class Calculator extends React.Component<CalculatorProps, State> {
     }
 
     // tslint:disable-next-line:no-eval
-    const num = eval(this.stacks.map(x => x.value).join('') || '0')
+    const num = eval(this.stacks.map(x => {
+      if(x.value === divisionText){
+        return "/"
+      }
+      else if(x.value === multiplicationText){
+        return "*"
+      }
+      return x.value
+    }).join('') || '0')
+
     const value = Math.round(num * 10 ** roundTo) / 10 ** roundTo
     const text = this.format(value)
 
@@ -544,7 +557,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
     // setText will update the state triggering a re render
     // so we want this.calculated to be representative of that
-    // but we also want to know it's previous value 
+    // but we also want to know it's previous value
     const previouslyCalculatedValue = this.calculated
     this.calculated = true
     this.setText(true, () => {
